@@ -1,10 +1,11 @@
+export const dynamic = 'force-static';
 import ScrollMotion from './scroll-motion';
 import { AudioLines, ArrowDown, ArrowRight, ArrowUpRight, Command, ClipboardCheck, SlidersHorizontal, ShieldCheck, Sparkles, Check, Code2 } from 'lucide-react';
 function BrandMark({size = 28}: {size?: number}) {
   return <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 21 C7 8,10.5 8,13.5 16 C15.5 21.5,18 21.5,20.5 16" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/><circle cx="26.5" cy="16" r="3" fill="#e0604a"/></svg>;
 }
 const repo = 'https://github.com/yunuchoiii/Sokki';
-const download = `${repo}/releases/latest`;
+const download = `${repo}/releases/latest/download/Sokki.dmg`;
 const features = [
   { icon: Command, title: '손에 익은 단축키로', text: '기본 ⌃⌥Space부터 나만의 조합까지. 수정자 키만 사용하는 단축키도 설정할 수 있어요.' },
   { icon: ClipboardCheck, title: '지금 쓰는 곳에 바로', text: '정리된 문장을 클립보드로 복사하고, 자동 붙여넣기를 켜면 커서 위치에 바로 입력해요.' },
