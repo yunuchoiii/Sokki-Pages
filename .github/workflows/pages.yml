@@ -5,6 +5,8 @@ on:
   pull_request:
     branches: [dev, main]
   workflow_dispatch:
+  schedule:
+    - cron: '0 21 * * *'   # 매일 06:00 KST — 새 릴리스 노트를 주워 다시 배포
 permissions:
   contents: read
 concurrency:
@@ -25,6 +27,7 @@ jobs:
       - run: npm run build
         env:
           GITHUB_PAGES: 'true'
+          GH_TOKEN: ${{ github.token }}   # prebuild 의 릴리스 조회용(익명 한도 회피)
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist/client

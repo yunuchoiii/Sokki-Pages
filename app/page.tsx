@@ -4,8 +4,38 @@ import { AudioLines, ArrowDown, ArrowRight, ArrowUpRight, Command, ClipboardChec
 function BrandMark({size = 28}: {size?: number}) {
   return <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 21 C7 8,10.5 8,13.5 16 C15.5 21.5,18 21.5,20.5 16" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/><circle cx="26.5" cy="16" r="3" fill="#e0604a"/></svg>;
 }
-const repo = 'https://github.com/yunuchoiii/Sokki';
-const download = `${repo}/releases/latest/download/Sokki.dmg`;
+import releasesData from '../data/releases.json';
+import { SITE_URL, REPO_URL, DOWNLOAD_URL } from '../lib/site';
+const repo = REPO_URL;
+const download = DOWNLOAD_URL;
+
+// 릴리스 노트는 빌드 때 scripts/fetch-releases.mjs 가 GitHub 에서 가져온다. 여기선 "## 바뀐 것" 아래 불릿만 보여 준다.
+type Release = { tag: string; version: string; publishedAt: string; url: string; body: string };
+const releases = releasesData as Release[];
+function notesOf(body: string): string[] {
+  const sections = body.split(/^##\s+/m);
+  const pick = sections.find((x) => x.startsWith('바뀐 것')) ?? sections.find((x) => /^- /m.test(x)) ?? '';
+  return pick.split('\n').filter((l) => l.startsWith('- ')).map((l) => l.slice(2).trim());
+}
+function Bold({ text }: { text: string }) {
+  return <>{text.split('**').map((part, i) => (i % 2 ? <strong key={i}>{part}</strong> : part))}</>;
+}
+const kst = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' });
+const isoDate = (s: string) => kst.format(new Date(s));
+const dotDate = (s: string) => isoDate(s).replace(/-/g, '.');
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Sokki',
+  operatingSystem: 'macOS 13 이상',
+  applicationCategory: 'UtilitiesApplication',
+  softwareVersion: releases[0]?.version,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW' },
+  downloadUrl: download,
+  url: SITE_URL,
+  inLanguage: 'ko',
+  description: '단축키를 누르고 말하면 Apple 음성 인식이 받아 적고 AI가 문장을 정리해 커서 위치에 붙여 넣는 무료 macOS 메뉴바 앱.',
+};
 const features = [
   { icon: Command, title: '손에 익은 단축키로', text: '기본 ⌃⌥Space부터 나만의 조합까지. 수정자 키만 사용하는 단축키도 설정할 수 있어요.' },
   { icon: ClipboardCheck, title: '지금 쓰는 곳에 바로', text: '정리된 문장을 클립보드로 복사하고, 자동 붙여넣기를 켜면 커서 위치에 바로 입력해요.' },
@@ -25,7 +55,7 @@ export default function Home() {
     <ScrollMotion />
     <a className="skip" href="#main">본문으로 바로가기</a>
     <header className="header"><a className="brand" href="#main" aria-label="Sokki 홈"><span className="logo"><BrandMark size={25}/></span>Sokki</a><nav aria-label="주요 메뉴"><a href="#how">사용 방법</a><a href="#models">AI 모델</a><a href="#releases">업데이트</a></nav><a className="button small" href={download}>다운로드 <ArrowDown size={15}/></a></header>
-    <main id="main">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}/><main id="main">
       <section className="hero">
         <div className="hero-inner"><div className="hero-content">
           <a className="release-pill" href="#releases"><span/>Sokki 0.3.2 <span className="pill-divider">/</span> 새로워진 시작 <ArrowUpRight size={14}/></a>
@@ -48,7 +78,7 @@ export default function Home() {
       <section className="section" id="how"><div className="section-title"><span className="eyebrow">말하기 → 정리하기 → 입력하기</span><h2>말하는 흐름 그대로.<br/>세 단계면 충분해요.</h2><p>메뉴바에 조용히 머물다가, 필요할 때 바로.</p></div><div className="steps">{[['01','단축키를 누르고 말해요','macOS에 내장된 Apple 음성 인식이 말을 받아 적어요.'],['02','한 번 더 누르면 정리 끝','선택한 AI가 군말을 덜어내고 자연스러운 문장으로 다듬어요.'],['03','원하는 곳에 붙여 넣어요','⌘V로 붙여 넣거나, 자동 붙여넣기로 현재 커서 위치에 입력하세요.']].map(([n,t,d])=><article key={n}><span className="step-num">{n}</span><h3>{t}</h3><p>{d}</p></article>)}</div><p className="note">처음 사용할 때 마이크·음성 인식 권한과 macOS 받아쓰기 설정이 필요해요. 자동 붙여넣기는 손쉬운 사용 권한을 허용해 주세요.</p></section>
       <section className="feature-section"><div className="section"><div className="section-title"><span className="eyebrow">작업의 흐름을 지키는 디테일</span><h2>작은 앱에 담은,<br/>매일 필요한 디테일.</h2></div><div className="features">{features.map(({icon:Icon,title,text})=><article key={title}><div className="feature-icon"><Icon size={23}/></div><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
       <section className="section" id="models"><div className="section-title"><span className="eyebrow">정리는, 내게 맞는 AI로</span><h2>AI는 내 방식대로.</h2><p>받아쓰기는 언제나 무료. 문장을 정리하는 방법을 골라보세요.</p></div><div className="models">{models.map(([name,badge,desc,req])=><article key={name} className={name==='AUTO'?'recommended':''}><div className="model-heading"><h3>{name}</h3><span>{badge}</span></div><p>{desc}</p><div className="requirement">{req}</div></article>)}</div><p className="note">모델은 Sokki 설정 → 음성인식 · AI에서 선택해요. 클라우드 모델 사용 시 텍스트가 선택한 제공자에게 전송되며, 무료 한도와 요금은 제공자 정책을 따라요.</p></section>
-      <section className="section releases" id="releases"><div className="section-title"><span className="eyebrow">RELEASE NOTES</span><h2>조금씩, 더 편하게.</h2><a className="text-link" href={`${repo}/releases`}>전체 업데이트 보기 <ArrowUpRight size={16}/></a></div><article className="release-card"><div className="release-head"><h3>0.3.2 <span>최신 확인 버전</span></h3><time dateTime="2026-09-07">2026.09.07</time></div><h4>시작은 더 쉽게, 설정은 더 명확하게.</h4><ul><li>Apple Intelligence가 꺼져 있으면 활성화 방법을 먼저 안내하고, 설정 후 돌아오면 자동으로 확인해요.</li><li>설정 탭을 ‘음성인식 · AI’, ‘고급 · 진단’으로 정리했어요.</li><li>DMG에 Applications 폴더로 끌어 넣는 설치 안내 화면을 추가했어요.</li></ul><a className="text-link" href={`${repo}/releases/tag/v0.3.2`}>릴리스 원문 <ArrowUpRight size={15}/></a><p className="meta">2026.09.07 GitHub 릴리스 기준</p></article></section>
+      <section className="section releases" id="releases"><div className="section-title"><span className="eyebrow">RELEASE NOTES</span><h2>조금씩, 더 편하게.</h2><a className="text-link" href={`${repo}/releases`}>전체 업데이트 보기 <ArrowUpRight size={16}/></a></div><div className="release-list">{releases.map((r, i) => <article className="release-card" key={r.tag}><div className="release-head"><h3>{r.version} {i === 0 && <span>최신</span>}</h3><time dateTime={isoDate(r.publishedAt)}>{dotDate(r.publishedAt)}</time></div><ul>{notesOf(r.body).map((n, j) => <li key={j}><Bold text={n}/></li>)}</ul><a className="text-link" href={r.url}>릴리스 원문 <ArrowUpRight size={15}/></a></article>)}<p className="meta">GitHub 릴리스에서 가져옵니다 · 사이트를 빌드할 때 갱신</p></div></section>
       <section className="download-section" id="download"><span className="logo large"><BrandMark size={40}/></span><h2>다음 문장은,<br/>말로 시작해 보세요.</h2><p>당신은 생각에 집중하세요. 정리는 Sokki가 할게요.</p><a className="button" href={download}><ArrowDown size={18}/> Mac용 무료 다운로드</a><p className="meta">macOS 13 이상 · DMG를 열고 Applications로 드래그하세요.</p></section>
     </main><footer><a className="brand" href="#main"><BrandMark size={26}/> Sokki</a><p>생각과 문장 사이, Sokki.</p><a className="text-link" href={repo}><Code2 size={17}/> GitHub <ArrowUpRight size={14}/></a></footer>
   </>;

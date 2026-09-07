@@ -14,3 +14,5 @@ h1{font-size:clamp(40px,4.4vw,61px);letter-spacing:-2.7px;margin-top:28px;line-h
 .app-stage{isolation:isolate}.record-window,.done-window{transform-origin:50% 60%}
 .models article{transition:box-shadow .3s,border-color .3s}.models article:hover{border-color:#e0604a70;box-shadow:0 12px 32px #16181d0d}
 @media(prefers-reduced-motion:reduce){.scroll-progress{display:none}.models article{transition:none}}
+.release-list{display:grid;gap:16px}
+.release-list .meta{margin:0}

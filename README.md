@@ -41,7 +41,20 @@ Sites의 React/Vinext 기반을 사용하며 로컬 실행에 필요한 기능�
 
 앱의 잉크 블랙 #16181d, 녹음 코랄 #e0604a, 회색 면 #f2f3f5, 완료 녹색 #e9f4ee를 반영했습니다. 로고는 Theme.swift에 정의된 파형과 점의 좌표를 사용합니다. Hero의 앱 화면은 실제 소스에 기반한 HTML/CSS 재현이며 녹음 기능이나 실시간 처리 기능은 없습니다. 예시 텍스트만 사용합니다.
 
-다운로드 CTA 3개는 모두 https://github.com/yunuchoiii/Sokki/releases/latest/download/Sokki.dmg 로 연결돼 누르면 바로 내려받습니다(릴리스마다 고정 이름 Sokki.dmg 를 올리는 규칙). 릴리스 노트는 0.3.2의 정적 스냅샷이므로 새 릴리스가 나오면 내용을 직접 갱신하세요. 다운로드 링크는 변경할 필요가 없습니다.
+다운로드 CTA 3개는 모두 https://github.com/yunuchoiii/Sokki/releases/latest/download/Sokki.dmg 로 연결돼 누르면 바로 내려받습니다(릴리스마다 고정 이름 Sokki.dmg 를 올리는 규칙). 다운로드 링크는 변경할 필요가 없습니다.
+
+## 릴리스 노트
+
+`npm run build` 앞에 `scripts/fetch-releases.mjs` 가 자동으로 돌아(`prebuild`) GitHub 릴리스 최신 3개를 `data/releases.json` 에 굽고 `public/sitemap.xml` 의 날짜를 갱신합니다. 페이지는 각 릴리스 본문의 "## 바뀐 것" 아래 불릿만 보여 줍니다. 네트워크가 없으면 커밋된 스냅샷을 그대로 씁니다.
+
+새 릴리스가 나오면 사이트를 다시 빌드해야 반영됩니다. Sokki 릴리스 절차에 `gh workflow run pages.yml -R yunuchoiii/Sokki-Pages` 가 들어 있고, 보험으로 매일 06:00 KST 에 자동 재빌드합니다.
+
+## SEO
+
+- `app/layout.tsx`: 제목·설명·키워드, canonical, Open Graph·트위터 카드, robots, 아이콘. 대표 주소는 `lib/site.ts` 의 `SITE_URL`.
+- `app/page.tsx`: `SoftwareApplication` JSON-LD (버전은 릴리스 데이터에서).
+- `public/robots.txt`, `public/sitemap.xml`(빌드 때 날짜 갱신), `public/og.png`(1200×630), `public/apple-touch-icon.png`.
+- OG 이미지는 `scripts/og-source.svg` 를 고친 뒤 `scripts/make-og.sh` 로 다시 만듭니다(macOS 전용).
 
 `lint`는 직접 작성한 앱과 설정을 검사합니다. 생성된 미사용 shadcn 컴포넌트에는 기본 린트 규칙과 충돌하는 항목이 있어 검사 범위에서 제외했습니다.
 
