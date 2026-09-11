@@ -1,0 +1,23 @@
+[
+  {
+    "tag": "v0.3.2",
+    "version": "0.3.2",
+    "publishedAt": "2026-09-07T01:14:54Z",
+    "url": "https://github.com/yunuchoiii/Sokki/releases/tag/v0.3.2",
+    "body": "## 바뀐 것\n\n- **Apple Intelligence 가 꺼져 있으면 켜라고 먼저 안내합니다.** macOS 26 에서 스위치만 꺼진 경우, 처음 설정 안내가 Gemini 키 발급 대신 \"켜면 키 없이 됩니다\"를 먼저 보여 주고, 켜고 돌아오면 자동으로 확인합니다. Gemini 키는 그 아래에서 선택할 수 있습니다.\n- **설정 탭 이름 정리.** \"음성인식 · AI\", \"고급 · 진단\".\n- **DMG 설치 화면.** DMG 를 열면 Sokki 를 Applications 로 끌어 넣는 안내 화면이 나옵니다.\n\n## 설치\n\nDMG 를 열고 Sokki 를 Applications 로 끌어 넣습니다. 애플 공증을 받은 앱이라 경고 없이 열립니다.\n"
+  },
+  {
+    "tag": "v0.3.1",
+    "version": "0.3.1",
+    "publishedAt": "2026-09-05T03:17:42Z",
+    "url": "https://github.com/yunuchoiii/Sokki/releases/tag/v0.3.1",
+    "body": "## 바뀐 것\n\n- **처음 설정 안내에서 직접 정한 단축키가 사라지던 문제 수정.** 0.3.0 에서 fn⌃ 처럼 직접 정한 단축키가 안내를 마치는 순간 예전 프리셋(⌥Space)으로 되돌아갔습니다. 이제 정한 대로 남습니다.\n\n0.3.0 에서 이 문제를 겪었다면 설정 > 단축키에서 한 번 다시 정해 주세요.\n\n## 설치\n\nDMG 를 열고 Sokki 를 Applications 로 끌어 넣습니다. 애플 공증을 받은 앱이라 경고 없이 열립니다.\n"
+  },
+  {
+    "tag": "v0.3.0",
+    "version": "0.3.0",
+    "publishedAt": "2026-09-05T03:08:54Z",
+    "url": "https://github.com/yunuchoiii/Sokki/releases/tag/v0.3.0",
+    "body": "## 바뀐 것\n\n- **처음 실행할 때 설치 안내 창이 열립니다.** 마이크·음성 인식·손쉬운 사용 권한을 한 화면에 하나씩, 왜 필요한지 설명한 뒤 허용하도록 안내합니다. AI 모델·단축키·붙여넣기 방식·주로 쓰는 분야도 이 창에서 정합니다.\n- 맥의 받아쓰기 스위치가 꺼져 있으면 알려 주고, 켜고 돌아오면 자동으로 확인합니다.\n- 안내는 설정 > 고급 & 진단 > \"처음 설정 안내 다시 보기\"에서 언제든 다시 볼 수 있습니다.\n\n## 설치\n\nDMG 를 열고 Sokki 를 Applications 로 끌어 넣습니다. 애플 공증을 받은 앱이라 경고 없이 열립니다.\n"
+  }
+]
