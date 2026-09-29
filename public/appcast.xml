@@ -3,15 +3,15 @@
     <channel>
         <title>Brefly</title>
         <item>
-            <title>0.7.1</title>
-            <pubDate>Sat, 26 Sep 2026 10:54:58 +0900</pubDate>
+            <title>0.8.0</title>
+            <pubDate>Tue, 29 Sep 2026 18:33:08 +0900</pubDate>
             <link>https://yunuchoiii.github.io/brefly-pages/</link>
             <sparkle:fullReleaseNotesLink>https://github.com/yunuchoiii/brefly/releases</sparkle:fullReleaseNotesLink>
-            <sparkle:version>18</sparkle:version>
-            <sparkle:shortVersionString>0.7.1</sparkle:shortVersionString>
+            <sparkle:version>19</sparkle:version>
+            <sparkle:shortVersionString>0.8.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://github.com/yunuchoiii/brefly/releases/download/v0.7.1/Brefly-0.7.1.dmg" length="1928536" type="application/octet-stream" sparkle:edSignature="bZI6HR9RqdLDVUkc2hfGrI7h4s3tqcw3RHwq2t8BfEG2Y8lD66Q5QU7nyopViL2BH8dRz71wYEBeccF4Zk/lBg=="/>
+            <enclosure url="https://github.com/yunuchoiii/brefly/releases/download/v0.8.0/Brefly-0.8.0.dmg" length="3332531" type="application/octet-stream" sparkle:edSignature="gyJOz6NUqAnbW6bm8RkI8jiAO/Aqy8N1QFCJ1+7jxIfb3CzTjcPKHY/fwR7EnGkwlFr74TvGLvas3JPHobpbDA=="/>
         </item>
     </channel>
 </rss>
