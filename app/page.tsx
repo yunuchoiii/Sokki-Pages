@@ -43,7 +43,7 @@ const jsonLd = {
 // 회의록을 시작하는 세 가지 방법. 표 한 줄씩 그대로 대응한다.
 const meetingWays: { icon: LucideIcon; name: string; desc: string; sub?: string; tag: string; need?: boolean }[] = [
   { icon: Users, name: '대면 회의', desc: '이 맥의 마이크로 그 자리의 말을 담아요.', sub: '마이크 하나라 누가 말했는지는 아직 나누지 못해요.', tag: '추가 권한 없음' },
-  { icon: Video, name: '화상 회의', desc: '내 목소리와 스피커로 나오는 상대 목소리를 따로 담아요. 그래서 ‘나 / 상대’로 나눠 적어요.', tag: '화면 기록 권한 필요', need: true },
+  { icon: Video, name: '화상 회의', desc: '내 목소리와 스피커로 나오는 소리를 따로 담아요. 그래서 내가 한 말과 상대가 한 말이 갈려요.', sub: '상대가 여러 명이면 모두 ‘상대’로 묶여요. 그 안에서 누가 말했는지는 아직 나누지 못해요.', tag: '화면 기록 권한 필요', need: true },
   { icon: FileAudio, name: '녹음 파일', desc: '이미 가지고 있는 녹음 파일을 넣으면 같은 방식으로 정리해요.', tag: '추가 권한 없음' },
 ];
 // 목업에 들어가는 예시 원문. 화상 회의라 '나 / 상대'로 갈라져 있다.
@@ -96,7 +96,7 @@ function MeetingSection() {
           </div>
         </div>
       </div>
-      <p className="note">화상 회의는 내 목소리와 상대 목소리를 따로 받아서 ‘나 / 상대’로 나눠 적어요. 원문은 시각과 함께 따로 볼 수 있어요.</p>
+      <p className="note">화상 회의는 내 목소리와 스피커로 나오는 소리를 따로 받아서 내 말과 상대 말을 갈라 적어요. 위 예시는 두 사람이 한 회의예요 — 상대가 여러 명이면 그쪽은 모두 ‘상대’로 적혀요. 원문은 시각과 함께 따로 볼 수 있어요.</p>
     </div>
     <div className="meeting-ways">
       <h3>시작하는 세 가지 방법</h3>
@@ -120,7 +120,7 @@ function MeetingSection() {
     </div>
     <div className="meeting-limits">
       <div className="limits-head"><CircleAlert size={15}/>아직 안 되는 것</div>
-      <div className="limit"><b>대면 회의는 누가 말했는지 나누지 못해요.</b><span>마이크 하나로 받기 때문에 원문이 한 사람 말처럼 이어서 적혀요. 화상 회의는 나눠 적어요.</span></div>
+      <div className="limit"><b>누가 말했는지까지는 아직 나누지 못해요.</b><span>대면 회의는 마이크 하나로 받아서 원문이 한 사람 말처럼 이어서 적혀요. 화상 회의는 내 말과 상대 말이 갈리지만, 상대가 여러 명이면 그쪽은 한 사람처럼 묶여요.</span></div>
       <div className="limit"><b>녹음하면서 바로 받아 적지는 않아요.</b><span>녹음이 끝난 뒤 받아 적기 시작해요. 35분 회의라면 2분쯤 기다리면 돼요.</span></div>
     </div>
   </section>;
