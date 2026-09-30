@@ -4,14 +4,14 @@
         <title>Brefly</title>
         <item>
             <title>0.8.3</title>
-            <pubDate>Wed, 30 Sep 2026 13:50:45 +0900</pubDate>
+            <pubDate>Wed, 30 Sep 2026 14:30:00 +0900</pubDate>
             <link>https://yunuchoiii.github.io/brefly-pages/</link>
             <sparkle:fullReleaseNotesLink>https://github.com/yunuchoiii/brefly/releases</sparkle:fullReleaseNotesLink>
             <sparkle:version>22</sparkle:version>
             <sparkle:shortVersionString>0.8.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://github.com/yunuchoiii/brefly/releases/download/v0.8.3/Brefly-0.8.3.dmg" length="3377320" type="application/octet-stream" sparkle:edSignature="Jt69DD9BVJMVXs2yzBKaVopkRZN0NkxXhCdeP8E1cmslbUsBjNvyLOfN/XE8SSRTD0X5+6g1b7mxY2wpS3GnDg=="/>
+            <enclosure url="https://github.com/yunuchoiii/brefly/releases/download/v0.8.3/Brefly-0.8.3.dmg" length="3394602" type="application/octet-stream" sparkle:edSignature="uCHe7FUrJ9LOGRS2trB8FY/vF7+TAQEjZou7/DiMV/C64B3+Gc2lGiHbK60PN4NoSOnabz27FtJDRSOs9pwpAQ=="/>
         </item>
     </channel>
 </rss>
