@@ -53,3 +53,69 @@ h1{font-size:clamp(40px,4.4vw,61px);letter-spacing:-2.7px;margin-top:28px;line-h
 .guide-more h2{font-size:15px;margin-top:0;letter-spacing:0;color:#8b909a;font-weight:700}
 .guide-more ul{list-style:none!important;padding-left:0}
 @media(max-width:600px){.guide{padding:36px 20px 30px}.guide h2{font-size:22px;margin-top:40px}}
+
+/* 회의록 섹션 — 시안 'Brefly 랜딩 회의록.dc.html' 그대로. 값은 전부 기존 토큰(#eceef1·#dcdfe4·#fbfbfc·#f2f3f5)을 쓴다. */
+.meeting{display:flex;flex-direction:column;gap:56px}
+.meeting .section-title>p{max-width:560px}
+.meeting-demo{display:flex;flex-direction:column;gap:14px}
+.meeting-demo .note{margin-top:0}
+.meeting-window{border:1px solid #dcdfe4;border-radius:14px;background:#fff;box-shadow:0 1px 2px #16181d0a,0 12px 40px #16181d0f;overflow:hidden}
+.meeting-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:14px 20px;border-bottom:1px solid var(--line);background:#fbfbfc}
+.win-dots{display:flex;gap:6px}
+.win-dots i{width:10px;height:10px;border-radius:50%;background:#dcdfe4}
+.meeting-top strong{font-size:14px;font-weight:650}
+.meeting-top .tag{font-size:12px;color:var(--muted);background:#f2f3f5;border-radius:5px;padding:2px 8px}
+.meeting-when{font-size:12px;color:#707b8b;margin-left:auto}
+.meeting-body{display:grid;grid-template-columns:1fr 1fr}
+.meeting-notes{padding:25px;display:flex;flex-direction:column;gap:22px;border-right:1px solid var(--line)}
+.meeting-script{padding:25px;display:flex;flex-direction:column;gap:18px;background:#fbfbfc}
+.panel-label{font-size:12px;letter-spacing:1.8px;font-weight:700;color:#707b8b}
+.note-block{display:flex;flex-direction:column;gap:6px}
+.note-block h4{margin:0;font-size:13px;font-weight:650;color:var(--muted)}
+.note-block p{font-size:15px}
+.note-lede{font-size:17px;font-weight:650;letter-spacing:-.4px;line-height:1.6}
+.note-block ul{list-style:none;margin:0;padding:0;font-size:15px}
+/* 앱의 회의록과 같은 코랄 불릿. 목업이 앱과 다른 모양을 그리면 받아 보고 기대와 달라진다.
+   페이지 전체에서 코랄을 아껴 쓰지만, 이 카드는 앱 화면을 재현한 것이라 앱의 색을 따른다. */
+.decided li{display:flex;gap:8px}
+.decided li::before{content:'•';color:#e0604a;flex:none}
+.decided li+li{margin-top:4px}
+.script-line{display:grid;grid-template-columns:44px 40px 1fr;gap:10px;align-items:baseline;font-size:14px;line-height:1.7}
+.script-line time{font-size:12px;color:#707b8b;font-variant-numeric:tabular-nums}
+.script-line b{font-size:12px;font-weight:650;justify-self:start;border-radius:5px;padding:0 7px}
+.script-line .me{background:#f2f3f5}
+.script-line .you{background:#fff}
+.meeting-ways{display:flex;flex-direction:column;gap:18px}
+.way-list{border-top:1px solid var(--primary)}
+.way{display:flex;flex-wrap:wrap;gap:8px 24px;padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.way-name{flex:0 0 180px;display:flex;gap:10px;align-items:center;font-weight:650}
+.way-desc{flex:1 1 320px;color:var(--muted)}
+.way-desc small{font-size:13px;color:#707b8b}
+.way-tag{font-size:12px;color:var(--muted);background:#f2f3f5;border-radius:5px;padding:2px 8px}
+.way-tag.need{color:var(--primary)}
+.meeting-facts{display:flex;flex-wrap:wrap;gap:16px}
+.fact-privacy{flex:2 1 520px;min-width:0;border:1px solid var(--line);border-radius:14px;padding:25px;background:#fbfbfc;display:flex;flex-direction:column;gap:18px}
+.fact-head{display:flex;gap:10px;align-items:center}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;font-size:14px}
+.flow-step{flex:1 1 200px;border:1px solid #dcdfe4;border-radius:10px;background:#fff;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.flow-step.out{border-style:dashed;background:none}
+.flow-step b{font-size:12px;font-weight:700;letter-spacing:1px;color:#707b8b}
+.flow-step strong{font-weight:650}
+.flow-step>span{font-size:13px;color:var(--muted)}
+.flow-arrow{display:flex;align-items:center;padding:0 4px;color:#707b8b}
+.fact-privacy>p{font-size:15px;color:var(--muted);line-height:1.8}
+.fact-speed{flex:1 1 260px;border:1px solid var(--line);border-radius:14px;padding:25px;display:flex;flex-direction:column;gap:10px}
+.fact-label{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--muted)}
+.fact-num{font-size:36px;font-weight:700;letter-spacing:-1.4px;line-height:1.2}
+.fact-speed>p{font-size:15px;color:var(--muted)}
+.meeting-limits{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px 40px;border-top:1px solid var(--line);padding-top:28px}
+.limits-head{grid-column:1/-1;display:flex;gap:8px;align-items:center;font-size:12px;letter-spacing:1.8px;font-weight:700}
+.limit{display:flex;flex-direction:column;gap:4px}
+.limit b{font-weight:650}
+.limit>span{font-size:15px;color:var(--muted);line-height:1.8}
+/* 두 칸이 좁아지면 쌓는다. 쌓인 뒤에도 세로선이 남으면 오른쪽에 금이 그어진 것처럼 보인다. */
+@media(max-width:860px){.meeting-body{grid-template-columns:1fr}.meeting-notes{border-right:none;border-bottom:1px solid var(--line)}}
+@media(max-width:760px){.meeting{gap:44px}}
+@media(max-width:480px){.meeting-notes,.meeting-script{padding:20px}.way-name{flex:1 1 100%}.script-line{grid-template-columns:40px 38px 1fr;gap:8px}}
+/* 두 칸이 세로로 쌓이면 화살표도 아래를 가리켜야 한다. 옆을 가리킨 채로 두면 첫 칸 오른쪽에 혼자 떠 있다. */
+@media(max-width:640px){.flow{flex-direction:column}.flow-arrow{justify-content:center;padding:0;transform:rotate(90deg)}}
