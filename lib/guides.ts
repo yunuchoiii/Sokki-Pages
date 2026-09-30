@@ -27,6 +27,14 @@ export const GUIDES: Guide[] = [
     updated: '2026-09-20',
   },
   {
+    slug: 'ai-models',
+    title: '어떤 AI 모델을 고를까 — 비용과 속도',
+    seoTitle: 'Brefly AI 모델 고르는 법 — Gemini·ChatGPT·Claude 비용과 속도 비교',
+    description:
+      '받아쓰기 정리와 회의록 요약에 어떤 AI 를 쓸지 고르는 기준. 48분 회의로 실제 측정한 토큰 사용량과, ChatGPT·Claude 구독과 API 요금이 왜 따로인지까지 정리했습니다.',
+    updated: '2026-09-30',
+  },
+  {
     slug: 'meeting-notes',
     title: '회의 내용을 말로 정리하기',
     seoTitle: '회의 내용을 말로 정리하는 법 — 맥에서 음성으로 회의록 쓰기',
