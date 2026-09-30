@@ -12,15 +12,24 @@ export default function ScrollMotion() {
       if (preference.matches) return;
       const animations = new Set<Animation>();
       const targets = document.querySelectorAll<HTMLElement>(
-        '.hero-content > *, .app-stage, .section-title, .steps article, .features article, .models article, .release-card, .download-section > *',
+        '.hero-content > *, .app-stage, .section-title, .steps article, .features article, .models article, .release-card, .download-section > *'
+        // 회의록 섹션은 카드 격자가 아니라 덩어리가 제각각이라 하나씩 적어 준다.
+        + ', .meeting-demo, .script-line, .meeting-ways > h3, .way, .meeting-facts article, .limits-head, .limit',
       );
       const reveal = (element: HTMLElement) => {
         const siblings = Array.from(element.parentElement?.children ?? []);
-        const stagger = element.matches('article') ? siblings.indexOf(element) % 3 * 100 : 0;
-        const animation = element.animate([
+        // 받아 적은 원문은 한 줄씩 내려앉는다. 회의록 목업이 자리잡은 뒤(380ms)에 시작해야
+        // 덩어리째 흐려지는 부모 위에서 같이 떠다니지 않는다.
+        const line = element.matches('.script-line');
+        const stagger = line ? 380 + siblings.indexOf(element) * 90
+          : element.matches('article, .way, .limit') ? siblings.indexOf(element) % 3 * 100 : 0;
+        const animation = element.animate(line ? [
+          { opacity: 0, transform: 'translateY(10px)' },
+          { opacity: 1, transform: 'translateY(0)' },
+        ] : [
           { opacity: 0, transform: 'translateY(48px) scale(.96)', filter: 'blur(7px)' },
           { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' },
-        ], { duration: 950, delay: stagger, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' });
+        ], { duration: line ? 420 : 950, delay: stagger, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' });
         animations.add(animation);
         animation.onfinish = () => { animations.delete(animation); };
       };
