@@ -68,12 +68,14 @@ const features = [
   { icon: SlidersHorizontal, title: '내 말투와 용어에 맞게', text: '격식체, 구어체, 최소 손질까지. 자주 쓰는 전문 용어와 올바른 표기도 등록하세요.' },
   { icon: ShieldCheck, title: '기록은 내 Mac 안에', text: '요약 기록은 로컬에 저장돼요. AI 정리가 실패해도 원문을 복사하고 다시 정리할 수 있어요.' },
 ];
+// ⚠️ 앱의 `Prefs.Backend` 와 맞춰 둔다. 0.8.3 에서 Claude Code(터미널)를 없애고
+// ChatGPT 를 더했다. 여기가 앱과 어긋나면 받아 보고 기대와 달라진다.
 const models = [
-  ['AUTO', '기본 설정', 'Gemini 키로 시작하세요. 지원되는 Mac에서는 Apple AI와 함께 실행해 더 나은 결과를 골라요.', 'Gemini 키 · Apple AI는 사용 가능 시'],
-  ['Apple AI', '내 Mac에서', '키 없이, 인터넷 없이 문장을 정리해요. 받아 적은 텍스트를 외부로 보내지 않아요.', 'macOS 26 + Apple Intelligence 활성화'],
+  ['AUTO', '기본 설정', '무료인 Gemini부터 쓰고, 안 되면 ChatGPT·Claude 순으로 넘어가요. 받아쓰기는 빠른 모델, 회의록은 잘 정리하는 모델을 골라요.', '있는 키 중에서 알아서'],
   ['Gemini', '무료로 시작', 'Google AI Studio에서 무료 키를 발급받아 사용해요. 카드 등록은 필요 없어요.', 'Gemini API 키 · 네트워크 필요'],
-  ['Claude API', '선택 옵션', 'Anthropic API로 문장을 정리해요. 사용한 만큼 API 비용이 발생해요.', 'Anthropic 키 + 크레딧'],
-  ['Claude Code', '구독으로', '이미 사용하는 Claude 구독을 연결해요. 처리에 10~60초가 걸릴 수 있어요.', 'Claude 구독 + 터미널 로그인'],
+  ['Apple AI', '내 Mac에서', '키 없이, 인터넷 없이 문장을 정리해요. 받아 적은 텍스트를 외부로 보내지 않아요.', 'macOS 26 + Apple Intelligence 활성화'],
+  ['ChatGPT', '선택 옵션', 'OpenAI API로 정리해요. 긴 회의록을 잘 정리해요. ChatGPT 구독과 요금이 따로 나갑니다.', 'OpenAI 키 + 크레딧'],
+  ['Claude', '선택 옵션', 'Anthropic API로 정리해요. 긴 회의록을 잘 정리해요. Claude 구독과 요금이 따로 나갑니다.', 'Anthropic 키 + 크레딧'],
   ['받아쓰기만', 'AI 없이', 'AI 정리를 끄면 받아 적은 원문을 그대로 사용할 수 있어요.', '추가 키 필요 없음'],
 ];
 // 회의록 섹션. Home 안에 한 줄로 밀어 넣기엔 커서 따로 뺐다.
@@ -156,7 +158,7 @@ export default function Home() {
       <section className="section" id="how"><div className="section-title"><span className="eyebrow">말하기 → 정리하기 → 입력하기</span><h2>말하는 흐름 그대로.<br/>세 단계면 충분해요.</h2><p>메뉴바에 조용히 머물다가, 필요할 때 바로.</p></div><div className="steps">{[['01','단축키를 누르고 말해요','macOS에 내장된 Apple 음성 인식이 말을 받아 적어요.'],['02','한 번 더 누르면 정리 끝','선택한 AI가 군말을 덜어내고 자연스러운 문장으로 다듬어요.'],['03','원하는 곳에 붙여 넣어요','⌘V로 붙여 넣거나, 자동 붙여넣기로 현재 커서 위치에 입력하세요.']].map(([n,t,d])=><article key={n}><span className="step-num">{n}</span><h3>{t}</h3><p>{d}</p></article>)}</div><p className="note">처음 사용할 때 마이크·음성 인식 권한과 macOS 받아쓰기 설정이 필요해요. 자동 붙여넣기는 손쉬운 사용 권한을 허용해 주세요.</p></section>
       <section className="feature-section"><div className="section"><div className="section-title"><span className="eyebrow">작업의 흐름을 지키는 디테일</span><h2>작은 앱에 담은,<br/>매일 필요한 디테일.</h2></div><div className="features">{features.map(({icon:Icon,title,text})=><article key={title}><div className="feature-icon"><Icon size={23}/></div><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
       <MeetingSection/>
-      <section className="section" id="models"><div className="section-title"><span className="eyebrow">정리는, 내게 맞는 AI로</span><h2>AI는 내 방식대로.</h2><p>받아쓰기는 언제나 무료. 문장을 정리하는 방법을 골라보세요.</p></div><div className="models">{models.map(([name,badge,desc,req])=><article key={name} className={name==='AUTO'?'recommended':''}><div className="model-heading"><h3>{name}</h3><span>{badge}</span></div><p>{desc}</p><div className="requirement">{req}</div></article>)}</div><p className="note">모델은 Brefly 설정 → 음성인식 · AI에서 선택해요. 클라우드 모델 사용 시 텍스트가 선택한 제공자에게 전송되며, 무료 한도와 요금은 제공자 정책을 따라요.</p></section>
+      <section className="section" id="models"><div className="section-title"><span className="eyebrow">정리는, 내게 맞는 AI로</span><h2>AI는 내 방식대로.</h2><p>받아쓰기는 언제나 무료. <strong>받아쓰기 정리와 회의록 요약을 따로 고를 수 있어요.</strong> 빠른 쪽과 잘 정리하는 쪽 중에서요.</p></div><div className="models">{models.map(([name,badge,desc,req])=><article key={name} className={name==='AUTO'?'recommended':''}><div className="model-heading"><h3>{name}</h3><span>{badge}</span></div><p>{desc}</p><div className="requirement">{req}</div></article>)}</div><p className="note"><strong>기본은 무료예요.</strong> Gemini 무료 키만 있으면 회의록까지 만들 수 있고, 더 잘 정리하고 싶을 때만 ChatGPT·Claude를 골라 쓰면 돼요. 그때만 각 회사에 요금이 나가는데, <strong>ChatGPT·Claude 구독을 쓰고 계셔도 API 요금은 따로</strong> 나갑니다. 모델은 Brefly 설정 → 음성인식 · AI에서 고르고, 키가 실제로 쓸 수 있는 상태인지도 그 화면에서 확인할 수 있어요.</p></section>
       <section className="section releases" id="releases"><div className="section-title"><span className="eyebrow">RELEASE NOTES</span><h2>조금씩, 더 편하게.</h2><a className="text-link" href={`${repo}/releases`}>전체 업데이트 보기 <ArrowUpRight size={16}/></a></div><div className="release-list">{releases.map((r, i) => <article className="release-card" key={r.tag}><div className="release-head"><h3>{r.version} {i === 0 && <span>최신</span>}</h3><time dateTime={isoDate(r.publishedAt)}>{dotDate(r.publishedAt)}</time></div><ul>{notesOf(r.body).map((n, j) => <li key={j}><Bold text={n}/></li>)}</ul><a className="text-link" href={r.url}>릴리스 원문 <ArrowUpRight size={15}/></a></article>)}<p className="meta">GitHub 릴리스에서 가져옵니다 · 사이트를 빌드할 때 갱신</p></div></section>
       <section className="download-section" id="download"><span className="logo large"><BrandMark size={40}/></span><h2>다음 문장은,<br/>말로 시작해 보세요.</h2><p>당신은 생각에 집중하세요. 정리는 Brefly가 할게요.</p><a className="button" href={download}><ArrowDown size={18}/> Mac용 무료 다운로드</a><p className="meta">macOS 13 이상 · DMG를 열고 Applications로 드래그하세요.</p></section>
     </main><footer><a className="brand" href="#main"><BrandMark size={26}/> Brefly</a><p>생각과 문장 사이, Brefly.</p><div className="footer-links"><a className="text-link" href={path('/guide/')}><BookOpen size={16}/> 사용 가이드</a><a className="text-link" href={sponsor}><Heart size={16}/> 후원하기 <ArrowUpRight size={14}/></a><a className="text-link" href={repo}><Code2 size={17}/> GitHub <ArrowUpRight size={14}/></a></div></footer>

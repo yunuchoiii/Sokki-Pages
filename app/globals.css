@@ -119,3 +119,10 @@ h1{font-size:clamp(40px,4.4vw,61px);letter-spacing:-2.7px;margin-top:28px;line-h
 @media(max-width:480px){.meeting-notes,.meeting-script{padding:20px}.way-name{flex:1 1 100%}.script-line{grid-template-columns:40px 38px 1fr;gap:8px}}
 /* 두 칸이 세로로 쌓이면 화살표도 아래를 가리켜야 한다. 옆을 가리킨 채로 두면 첫 칸 오른쪽에 혼자 떠 있다. */
 @media(max-width:640px){.flow{flex-direction:column}.flow-arrow{justify-content:center;padding:0;transform:rotate(90deg)}}
+/* 가이드 본문의 표. 좁은 화면에서는 가로로만 밀리게 둔다 — 본문 전체가 밀리면 안 된다. */
+.guide-table{margin-top:22px;overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.guide-table table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+.guide-table th,.guide-table td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+.guide-table thead th{font-size:12px;font-weight:700;color:#707b8b;background:#fbfbfc}
+.guide-table tbody tr:last-child td{border-bottom:none}
+.guide-table td:not(:first-child){font-variant-numeric:tabular-nums;color:var(--muted)}
