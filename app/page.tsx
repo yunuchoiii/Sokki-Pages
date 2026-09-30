@@ -55,10 +55,12 @@ const meetingScript: [string, '나' | '상대', string][] = [
   ['05:47', '상대', '좋아요. 공지는 누가 쓸까요?'],
   ['05:52', '나', '제가 금요일까지 초안 써 둘게요.'],
 ];
-// 예시 회의록의 "할 일" — 담당자와 마감이 말에 나왔을 때만 붙는다는 걸 보여 준다.
-const meetingTodos: [string, string][] = [
-  ['출시 공지 초안 쓰기', '나 · 금요일까지'],
-  ['녹음 버튼 위치 고치기', '상대 · 다음 회의 전'],
+// 예시 회의록의 "할 일". 앱이 내는 꼴 그대로다 — `할 일 — 담당자, 마감`, 말 안 한 건 안 붙는다.
+// ⚠️ 시안은 체크박스로 그렸는데 쓰지 않는다. 앱에 체크박스가 없고, 누를 수 있을 것처럼
+//    보이는 것을 그려 두면 받아 보고 기대와 달라진다.
+const meetingTodos = [
+  '출시 공지 초안 쓰기 — 나, 금요일까지',
+  '녹음 버튼 위치 고치기 — 상대, 다음 회의 전',
 ];
 const features = [
   { icon: Command, title: '손에 익은 단축키로', text: '기본 ⌃⌥Space부터 나만의 조합까지. 수정자 키만 사용하는 단축키도 설정할 수 있어요.' },
@@ -86,7 +88,7 @@ function MeetingSection() {
             <span className="panel-label">정리</span>
             <div className="note-block"><h4>한 줄 요약</h4><p className="note-lede">10월 출시는 그대로 가고, 결제 화면만 다음 버전으로 미뤄요.</p></div>
             <div className="note-block"><h4>결정된 것</h4><ul className="decided"><li>출시일은 10월 14일 그대로</li><li>결제 화면 개편은 0.9로 미룸</li></ul></div>
-            <div className="note-block"><h4>할 일</h4><ul className="todo">{meetingTodos.map(([what, who]) => <li key={what}><i aria-hidden="true"/><span>{what}</span><em>{who}</em></li>)}</ul></div>
+            <div className="note-block"><h4>할 일</h4><ul className="decided">{meetingTodos.map((todo) => <li key={todo}>{todo}</li>)}</ul></div>
             <div className="note-block"><h4>논의한 것</h4><p>베타 의견 중 녹음 버튼 위치 얘기가 가장 많았어요. 결제 화면은 이번 일정에 넣기엔 빠듯하다는 의견이었어요.</p></div>
             <div className="note-block"><h4>다음에 볼 것</h4><p>결제 화면 시안 · 베타 2차 모집 여부</p></div>
           </div>
